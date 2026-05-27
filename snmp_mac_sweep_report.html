@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SNMP MAC Sweep Report</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+         margin: 2rem; background: #f5f5f5; color: #333; }
+  h1 { color: #1a1a2e; border-bottom: 3px solid #16213e; padding-bottom: 0.5rem; }
+  .summary { background: #fff; padding: 1.5rem; border-radius: 8px;
+              box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 2rem; }
+  .summary table { border-collapse: collapse; }
+  .summary td { padding: 0.3rem 1rem 0.3rem 0; }
+  .summary td:first-child { font-weight: bold; color: #555; }
+  table.results { width: 100%; border-collapse: collapse; background: #fff;
+                   border-radius: 8px; overflow: hidden;
+                   box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+  table.results th { background: #16213e; color: #fff; padding: 0.75rem 1rem;
+                      text-align: left; font-size: 0.9rem; }
+  table.results td { padding: 0.6rem 1rem; border-bottom: 1px solid #eee; font-size: 0.9rem; }
+  table.results tr:hover { background: #f0f4ff; }
+  table.results code { background: #eef; padding: 2px 5px; border-radius: 3px; }
+  .loss { color: #e74c3c; font-weight: bold; }
+  .snmp-warn { color: #fff; background: #e74c3c; font-weight: bold; padding: 0.5rem; }
+  .snmp-warn small { font-weight: normal; font-size: 0.75rem; }
+  .snmp-warn-row { background: #fdecea !important; }
+  .totals { background: #e8f5e9; font-weight: bold; }
+  .footer { margin-top: 2rem; font-size: 0.8rem; color: #999; }
+</style>
+</head>
+<body>
+<h1>SNMP MAC Sweep Report</h1>
+
+<p style="max-width: 800px; line-height: 1.6; color: #444;">
+This report summarises an SNMP MAC address sweep test executed via IxNetwork.
+Raw traffic containing SNMPv2c GET-request PDUs (community &ldquo;public&rdquo;,
+OID sysDescr.0) was transmitted across the destination MAC range shown below.
+Each block of MAC addresses was sent at a fixed line-rate for a configured
+duration, and the monitored router&rsquo;s log was inspected for
+<code>AUTH-5-SNMPD_AUTH_FAILURE</code> entries after every block.
+</p>
+
+<div class="summary">
+<table>
+  <tr><td>Generated</td><td>2026-05-27 03:45:12</td></tr>
+  <tr><td>Start MAC</td><td><code>02:00:00:00:00:00</code></td></tr>
+  <tr><td>End MAC</td><td><code>02:00:ff:ff:ff:ff</code></td></tr>
+  <tr><td>MAC Range Size</td><td>4,294,967,296</td></tr>
+  <tr><td>Block Size</td><td>999,999,999</td></tr>
+  <tr><td>Total Blocks</td><td>5</td></tr>
+  <tr><td>Blocks Completed</td><td>5</td></tr>
+  <tr><td>Total Tx Frames</td><td>1,678,151,591</td></tr>
+  <tr><td>Total Rx Frames</td><td>0</td></tr>
+  <tr><td>Total Test Duration</td><td><strong>2m 13s</strong></td></tr>
+</table>
+</div>
+
+
+<div class="summary">
+<h2>Router Details</h2>
+<table>
+  <tr><td>Hostname / IP</td><td><code>10.37.105.154</code></td></tr>
+  <tr><td>Username</td><td>root</td></tr>
+  <tr><td>SSH Port</td><td>22</td></tr>
+  <tr><td>Log Checked</td><td><code>show log info-log</code></td></tr>
+  <tr><td>Pattern Monitored</td><td><code>AUTH-5-SNMPD_AUTH_FAILURE</code></td></tr>
+</table>
+</div>
+
+
+<table class="results">
+<thead>
+  <tr>
+    <th>Block</th><th>Start MAC</th><th>End MAC</th>
+    <th>MAC Count</th><th>Tx Frames</th><th>Rx Frames</th><th>Loss %</th><th>Duration</th><th>Found Errors<br><small>AUTH-5-SNMPD_AUTH_FAILURE:<br>nsa_log_community:<br>unauthorized SNMP community</small></th>
+  </tr>
+</thead>
+<tbody>
+        <tr>
+          <td>0</td>
+          <td><code>02:00:00:00:00:00</code></td>
+          <td><code>02:00:3b:9a:c9:fe</code></td>
+          <td>999,999,999</td>
+          <td>334101388</td>
+          <td>0</td>
+          <td class="loss">100.000</td>
+          <td>25s</td>
+          <td>No</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td><code>02:00:3b:9a:c9:ff</code></td>
+          <td><code>02:00:77:35:93:fd</code></td>
+          <td>999,999,999</td>
+          <td>336309122</td>
+          <td>0</td>
+          <td class="loss">100.000</td>
+          <td>27s</td>
+          <td>No</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><code>02:00:77:35:93:fe</code></td>
+          <td><code>02:00:b2:d0:5d:fc</code></td>
+          <td>999,999,999</td>
+          <td>336046901</td>
+          <td>0</td>
+          <td class="loss">100.000</td>
+          <td>26s</td>
+          <td>No</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><code>02:00:b2:d0:5d:fd</code></td>
+          <td><code>02:00:ee:6b:27:fb</code></td>
+          <td>999,999,999</td>
+          <td>335392656</td>
+          <td>0</td>
+          <td class="loss">100.000</td>
+          <td>26s</td>
+          <td>No</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><code>02:00:ee:6b:27:fc</code></td>
+          <td><code>02:00:ff:ff:ff:ff</code></td>
+          <td>294,967,300</td>
+          <td>336301524</td>
+          <td>0</td>
+          <td class="loss">100.000</td>
+          <td>27s</td>
+          <td>No</td>
+        </tr>
+</tbody>
+</table>
+
+<div class="footer">
+  IxNetwork SNMP MAC Sweep &mdash; Report generated 2026-05-27 03:45:12 &mdash; Total duration: 2m 13s
+</div>
+</body>
+</html>
